@@ -1,0 +1,19 @@
+services:
+  cc-sandbox:
+    image: cc-sandbox:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cc-sandbox
+    restart: always
+    volumes:
+      - ${HOME}/.claude:/home/user/.claude
+      - ${HOME}/.claude.codex:/home/user/.codex
+      - ${HOME}/.gemini:/home/user/.gemini
+    networks:
+      - cc_network
+
+networks:
+  cc_network:
+    name: cc_network
+    driver: bridge
