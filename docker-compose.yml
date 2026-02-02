@@ -8,7 +8,7 @@ services:
     restart: always
     volumes:
       - ${HOME}/.claude:/home/user/.claude
-      - ${HOME}/.claude.codex:/home/user/.codex
+      - ${HOME}/.codex:/home/user/.codex
       - ${HOME}/.gemini:/home/user/.gemini
     networks:
       - cc_network
