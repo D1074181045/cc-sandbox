@@ -51,10 +51,11 @@ WORKDIR /workspace
 ENV NPM_CONFIG_PREFIX="/home/$USERNAME/.npm-global"
 ENV PATH="/home/$USERNAME/.npm-global/bin:$PATH"
 
-RUN curl -fsSL https://claude.ai/install.sh | bash
+RUN curl -fsSL https://claude.ai/install.sh | bash -s stable
 
 RUN npm install -g @openai/codex
 RUN npm install -g @google/gemini-cli
+RUN npm install -g opencode-ai
 
 ENV PATH="/home/$USERNAME/.local/bin:$PATH"
 
