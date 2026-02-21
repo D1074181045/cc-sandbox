@@ -1,15 +1,33 @@
 services:
-  cc-sandbox:
-    image: cc-sandbox:latest
+  cpa:
+    image: eceasy/cli-proxy-api:latest
+    container_name: cli-proxy-api
+    restart: always
+    ports:
+      - "8317:8317"
+      - "8085:8085"
+      - "1455:1455"
+      - "54545:54545"
+      - "51121:51121"
+      - "11451:11451"
+    volumes:
+      - ./config.yaml:/CLIProxyAPI/config.yaml
+    networks:
+      - cc_network
+
+  sandbox:
     build:
       context: .
       dockerfile: Dockerfile
+    image: cc-sandbox:latest
     container_name: cc-sandbox
     restart: always
     volumes:
-      - ${HOME}/.claude:/home/user/.claude
-      - ${HOME}/.codex:/home/user/.codex
-      - ${HOME}/.gemini:/home/user/.gemini
+      - \\wsl.localhost\Ubuntu\home\user\.claude:/home/user/.claude
+      - \\wsl.localhost\Ubuntu\home\user\.codex:/home/user/.codex
+      - \\wsl.localhost\Ubuntu\home\user\.gemini:/home/user/.gemini
+    depends_on:
+      - cpa
     networks:
       - cc_network
 
@@ -17,3 +35,4 @@ networks:
   cc_network:
     name: cc_network
     driver: bridge
+    external: true
