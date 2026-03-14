@@ -23,9 +23,9 @@ services:
     container_name: cc-sandbox
     restart: always
     volumes:
-      - \\wsl.localhost\Ubuntu\home\user\.claude:/home/user/.claude
-      - \\wsl.localhost\Ubuntu\home\user\.codex:/home/user/.codex
-      - \\wsl.localhost\Ubuntu\home\user\.gemini:/home/user/.gemini
+      - ${HOME}/.claude:/home/user/.claude
+      - ${HOME}/.codex:/home/user/.codex
+      - ${HOME}/.gemini:/home/user/.gemini
     depends_on:
       - cpa
     networks:
